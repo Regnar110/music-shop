@@ -1,4 +1,5 @@
 .mobile-navbar-button {
+    z-index: 10;
     position: fixed;
     right: 15px;
     top: 15px;
@@ -12,6 +13,7 @@
 }
 
 .mobile-navbar {
+    z-index: 10;
     font-family: 'Inter', sans-serif;
     background-color: #000000;
     right: -320px;
@@ -19,9 +21,9 @@
     width: 280px;
     height: 600px;
     transition: .2s ease;
-    -webkit-box-shadow: -4px 11px 43px 0px #F31337;
-    -moz-box-shadow: -4px 11px 43px 0px #F31337;
-    box-shadow: -4px 11px 43px 0px #F31337;
+    -webkit-box-shadow: -4px 11px 14px 0px #F31337;
+    -moz-box-shadow: -4px 11px 14px 0px #F31337;
+    box-shadow: -4px 11px 14px 0px #F31337;
 
     .close-button {
         color: #F31337;

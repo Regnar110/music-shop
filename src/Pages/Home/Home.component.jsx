@@ -1,9 +1,10 @@
 import './home.styles.scss'
+import HomeLanding from '../../Components/HomeComponents/HomeLanding/HomeLanding.component'
 
 const Home = () => {
     return(
         <div className='home'>
-            Home
+            <HomeLanding />
         </div>
     )
 }

@@ -1,0 +1,27 @@
+.fancy-area {
+    position: relative;
+    top: 150px;
+    width: 50%;
+    font-family: 'Russo One', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: calc(30px + (120 - 30) * ((100vw - 280px) / (1600 - 280)));
+    background: -webkit-linear-gradient(#F31337, #d65066);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transform:skewY(-10deg);
+}
+
+@media screen and(max-width: 1010px) {
+    .fancy-area{
+        font-size: calc(30px + (100 - 30) * ((100vw - 280px) / (1600 - 280)));
+    }
+}
+
+@media screen and(max-width: 768px) {
+    .fancy-area {
+        width: 100%;
+    }
+}
