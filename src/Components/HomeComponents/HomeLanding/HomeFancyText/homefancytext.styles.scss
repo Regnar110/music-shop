@@ -1,6 +1,6 @@
 .fancy-area {
     position: relative;
-    top: 150px;
+    top: 100px;
     width: 50%;
     font-family: 'Russo One', sans-serif;
     display: flex;
@@ -16,7 +16,7 @@
 
 @media screen and(max-width: 1010px) {
     .fancy-area{
-        font-size: calc(30px + (100 - 30) * ((100vw - 280px) / (1600 - 280)));
+        font-size: calc(40px + (120 - 40) * ((100vw - 280px) / (1600 - 280)));
     }
 }
 

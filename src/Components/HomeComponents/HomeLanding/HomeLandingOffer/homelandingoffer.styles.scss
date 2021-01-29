@@ -1,1 +1,42 @@
 // top 150px
+
+.home-landing-offer {
+    position: relative;
+    width: 50%;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .home-landing-offer-header {
+        font-size: calc(27px + (50 - 27) * ((100vw - 280px) / (1600 - 280)));
+        margin: 20px;
+        font-family: 'Russo One', sans-serif;
+        background: -webkit-linear-gradient(#F31337, #d65066);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+    }
+
+    .album {
+        display: inline-block;
+        text-align: center;
+        margin: 20px;
+        img {
+            width: 100%;
+        }
+    }
+}
+
+@media screen and(max-width: 768px) {
+    .home-landing-offer {
+        width: 100%;
+        margin-top: 100px;
+    }
+
+    .album {
+
+    }
+}
+

@@ -1,12 +1,21 @@
-import HomeLanding from '../HomeLanding.component'
 import './homelandingoffer.styles.scss'
+import { withRouter } from 'react-router-dom';
 
-const HomeLandingOffer = () => {
+import CustomButton from '../../../CustomButton/CustomButton.component'
+import album from '../../../../Assets/album.jpg'
+
+const HomeLandingOffer = ({history}) => {
     return(
-        <div>
-            Przygotuj się na naszą ofertę!
+        <div className='home-landing-offer'>
+            <div className='home-landing-offer-header'>                    
+                Daily news on sale
+            </div>
+            <div className='album'>
+                <img src={album}/>
+            </div>
+            <CustomButton name={'Check it out'} onClick={() => history.push('/shop')}/>
         </div>
     )
 }
 
-export default HomeLandingOffer
+export default withRouter(HomeLandingOffer)

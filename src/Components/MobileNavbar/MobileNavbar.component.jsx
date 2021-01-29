@@ -18,6 +18,7 @@ const MobileNavbar = ({ history }) => {
 
     return (
         <>
+            <div className='mobile-site-logo'><img src={ShopLogo} /></div>
             <div className='mobile-navbar-button' onClick={handleMenuOpen}>
                 <div />
                 <div />

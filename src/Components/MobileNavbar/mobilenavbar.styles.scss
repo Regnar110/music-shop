@@ -1,3 +1,16 @@
+.mobile-site-logo {
+    z-index: 10;
+    position: fixed;
+    display: inline-block;
+    left: 20px;
+    top: 20px;
+    img {
+        z-index: 10;
+        width: calc(95px + (150 - 95) * ((100vw - 280px) / (768 - 280)));
+    }
+}
+
+
 .mobile-navbar-button {
     z-index: 10;
     position: fixed;
