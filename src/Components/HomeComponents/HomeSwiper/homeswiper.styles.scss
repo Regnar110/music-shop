@@ -1,0 +1,38 @@
+.home-swiper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .swiper-wrapper {
+        width: 70%;
+
+        .swiper-scrollbar {
+            background-color: rgba(255, 255, 255, 0.226);
+
+            .swiper-scrollbar-drag {
+                background-color: #F31337;
+            }
+        }
+
+        .swiper-button-prev {
+            color:#F31337 ;
+        }
+
+        .swiper-button-next {
+            color:#F31337 ;
+        }
+
+        .swiper-slide-next, .swiper-slide-active, .swiper-slide-prev {
+            text-align: center;
+        }
+
+    }
+
+    @media screen and(max-width: 768px) {
+        .swiper-wrapper {
+            width: 90%;
+        }
+    }
+
+}

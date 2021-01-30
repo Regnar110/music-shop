@@ -1,0 +1,24 @@
+.swiper-card {
+    display: inline-block;
+    padding: 30px;
+
+    .swiper-image {
+        img{ 
+            width: 100%; //400px default
+            height: 100%;
+        } 
+    }
+
+
+    .swiper-card-description {
+        font-family: 'Roboto', sans-serif;
+        display: flex;
+        justify-content: space-between;
+        font-size: 20px;
+        margin: 20px;
+    }
+
+    @media screen and(max-width: 1000px) {
+        padding: 5px;
+    }
+}
