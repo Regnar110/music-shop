@@ -1,6 +1,6 @@
 .swiper-card-button {
     font-family: 'Roboto', sans-serif;
-    font-size: 30px;
+    font-size: calc(20px + (30 - 20) * ((100vw - 280px) / (1600 - 280)));
     padding: 15px;
     border: 1px solid #ffffff;
     cursor: pointer;

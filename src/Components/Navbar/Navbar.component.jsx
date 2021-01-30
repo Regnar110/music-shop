@@ -1,13 +1,31 @@
 import './navbar.styles.scss'
 
+import { useEffect } from 'react'
 import {withRouter} from 'react-router-dom'
 
 import ShopLogo from '../../Assets/ShopLogo.svg'
 
 const Navbar = ({history}) => {
+
+    const handleLogoChange = () => {
+        let position = document.querySelector('body').getBoundingClientRect();
+        const navLogo = document.querySelector('.nav-logo')
+        position.y < -1 ?
+            navLogo.style.width='100px'
+        :
+            navLogo.style.width='150px'
+    }
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleLogoChange);
+        return () => {
+            window.removeEventListener('scroll', handleLogoChange)
+        }
+    })
+
     return(
         <nav className='navbar'>
-            <img alt='wings-logo' src={ShopLogo} />
+            <img className='nav-logo' alt='wings-logo' src={ShopLogo} />
             <div className='navbar-content'>
 
                 <span onClick={() => history.push('/')}>Home<div className='underline'/></span>

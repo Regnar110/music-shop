@@ -8,6 +8,7 @@ import Contact from '../Pages/Contact/Contact.component'
 import Login from '../Pages/Login/Login.component'
 import SignUp from '../Pages/SignUp/SignUp.component'
 import Shop from '../Pages/Shop/Shop.component'
+import Footer from '../Components/Footer/Footer.component'
 
 
 const App = () => {
@@ -33,6 +34,7 @@ const App = () => {
         <Route exact path='/login' component={Login}/>
         <Route exact path='/signup' component={SignUp}/>
       </Switch>
+      <Footer />
     </div>
   )
 }
