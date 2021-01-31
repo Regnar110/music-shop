@@ -5,7 +5,7 @@ import BreakFromTop from '../../Components/BreakFromTop/BreakFromTop.component'
 import ContactFormInput from '../../Components/ContactComponents/ContactForm/ContactFormInput.component'
 import CustomButton from '../../Components/CustomButton/CustomButton.component'
 
-const Contact = () => { //NAME, EMAIL, SUBJECT, TEXT
+const Contact = () => {
 
     const [sender, setSender] = useState('')
     const [email, setEmail] = useState('')
@@ -18,7 +18,6 @@ const Contact = () => { //NAME, EMAIL, SUBJECT, TEXT
     }
 
     const handleFieldChange = event => {
-        
         const targetName = event.target.name
         if(targetName === 'sender') {
             setSender(event.target.value)
