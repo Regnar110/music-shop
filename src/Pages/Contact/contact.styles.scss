@@ -1,0 +1,13 @@
+.contact {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+
+    .contact-form {
+        width: 40%;
+        text-align: center;
+    }
+}

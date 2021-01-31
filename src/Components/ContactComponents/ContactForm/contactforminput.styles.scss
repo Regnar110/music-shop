@@ -1,0 +1,67 @@
+@mixin shrinkLabel { 
+    top: -20px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.664);
+  }
+
+.form-group {
+    font-family: 'Roboto', sans-serif;
+    margin-top: 40px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    .form-input {
+        color: white;
+        font-size: 20px;
+        height: 30px;
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px solid #F31337;
+
+        &:focus {
+            outline: none;
+        }
+
+        &:focus ~ .form-label {
+            @include shrinkLabel();
+        }
+    }
+
+    .form-label {
+        font-size: 17px;
+        top: 0;
+        position: absolute;
+        transition: .1s ease-in-out;
+    }
+
+    .form-input-textarea {
+        color: white;
+        font-size: 20px;
+        background-color: transparent;
+        border: 1px solid #F31337;
+        height: 200px;
+
+        &:focus {
+            outline: none;
+        }
+
+        &:focus ~ .form-textarea-label {
+            @include shrinkLabel();
+        }
+    }
+
+    .form-textarea-label {
+        font-size: 17px;
+        position: absolute;
+        top: 0;
+        transition: .1s ease-in-out;
+    }
+
+    .shrink {
+        top: -20px;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.664);
+    }
+
+}
