@@ -1,0 +1,44 @@
+.login-form {
+    text-align: center;
+    display: table;
+    width: 40%;
+    border: 1px solid rgba(255, 255, 255, 0.363);
+    border-radius: 10px;
+    padding: 50px;
+
+    p {
+        text-align: start;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+
+@media screen and(max-width: 1050px) {
+    .login-form {
+        width: 50%;
+    }
+}
+
+@media screen and(max-width: 768px) {
+    .login-form {
+        width: 100%;
+        padding: 20px;
+    }
+
+}
+
+@media screen and(max-width: 480px) {
+
+    .login-form {
+        width: 100%;
+        padding: 10px;
+    }
+
+}

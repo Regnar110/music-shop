@@ -1,12 +1,13 @@
 .custom-button {
+
     color: white;
     font-family: 'Roboto', sans-serif;
     cursor: pointer;
-    font-size: calc(20px + (30 - 20) * ((100vw - 280px) / (1600 - 280)));
+    font-size: calc(15px + (25 - 15) * ((100vw - 280px) / (1600 - 280)));
     border: 3px solid #F31337;
     display: inline-block;
-    padding: 15px;
-    margin: 30px;
+    padding: 15px 30px;
+    margin:30px;
     background-color: transparent;
 
     &:active {
@@ -15,5 +16,40 @@
 
     &:focus {
         outline: none;
+    }
+}
+
+.custom-google-button {
+    white-space: nowrap;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid white;
+    cursor: pointer;
+    font-size: calc(15px + (25 - 15) * ((100vw - 280px) / (1600 - 280)));
+    background-color: #4081EC;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 30px;
+    margin:30px;
+
+    &:active {
+        outline: none;
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    img {
+        width: calc(30px + (40 - 30) * ((100vw - 280px) / (1600 - 280)));
+        margin-right: 10px;
+    }
+
+}
+
+@media screen and(max-width: 370px) {
+    .custom-google-button {
+        margin: 0px;
     }
 }

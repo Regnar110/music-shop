@@ -1,10 +1,11 @@
 import { useState } from 'react'
+import { withRouter } from 'react-router-dom'
 
 import './signupaccountcreate.styles.scss'
 import FormInput from '../../FormInput/FormInput.component'
 import CustomButton from '../../CustomButton/CustomButton.component'
 
-const SignUpAccountCreate = () => {
+const SignUpAccountCreate = ({history}) => {
 
     const [userName, setUserName] = useState('')
     const [surname, setSurname] = useState('')
@@ -39,8 +40,10 @@ const SignUpAccountCreate = () => {
             <CustomButton type='submit' name='Create account'/>
             <span>*All fields are required to register</span>
             <span>*The password must contain at least six characters, one uppercase letter, one number and one special character</span>
+            <span>Do you have an account? <span onClick={() => history.push('/login')}>Sign In</span></span>
         </form>
+        
     )
 }
 
-export default SignUpAccountCreate;
+export default withRouter(SignUpAccountCreate);

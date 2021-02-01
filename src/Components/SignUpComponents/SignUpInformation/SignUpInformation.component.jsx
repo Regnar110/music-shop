@@ -1,12 +1,30 @@
 import './signupinformation.styles.scss'
+import CustomButton from '../../CustomButton/CustomButton.component'
+import { withRouter } from 'react-router-dom'
+
+
 import fastorder from '../../../Assets/signupinformation/fastorder.svg'
 import prevorder from '../../../Assets/signupinformation/previousorder.svg'
 import trackorder from '../../../Assets/signupinformation/trackorder.svg'
 import discount from '../../../Assets/signupinformation/discount.svg'
 
-const SignUpInformation = () => {
+const SignUpInformation = ({login, history}) => {
     return (
         <div className='signup-information'>
+            {
+                login ? 
+                (   
+                    <>
+                    <h2>You do not have an account?</h2>
+                    <CustomButton name='Create an account' onClick={() => history.push('/signup')}/>
+                    </>
+                )
+                :
+                (
+                    null
+                )
+            }
+
             <h2>Why is it worth having an account?</h2>
             <div className='signup-information-content'>
                 <div className='information'>
@@ -30,4 +48,4 @@ const SignUpInformation = () => {
     )
 }
 
-export default SignUpInformation;
+export default withRouter(SignUpInformation);
