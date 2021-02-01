@@ -1,0 +1,43 @@
+.signup-account-create-form {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 40%;
+    border: 1px solid rgba(255, 255, 255, 0.363);
+    border-radius: 10px;
+    padding: 50px;
+
+    span {
+        margin-top: 30px;
+        color: rgba(255, 255, 255, 0.363);;
+    }
+}
+
+@media screen and(max-width: 1050px) {
+
+    .signup-account-create-form {
+        width: 50%;
+    }
+
+}
+
+@media screen and(max-width: 768px) {
+
+    .signup-account-create-form {
+        width: 100%;
+        padding: 20px;
+    }
+
+}
+
+
+@media screen and(max-width: 340px) {
+
+    .signup-account-create-form {
+        width: 100%;
+        padding: 10px;
+    }
+
+}

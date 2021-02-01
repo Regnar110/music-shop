@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import './contact.styles.scss'
 import BreakFromTop from '../../Components/BreakFromTop/BreakFromTop.component'
-import ContactFormInput from '../../Components/ContactComponents/ContactForm/ContactFormInput.component'
+import FormInput from '../../Components/FormInput/FormInput.component'
 import CustomButton from '../../Components/CustomButton/CustomButton.component'
 
 const Contact = () => {
@@ -35,10 +35,10 @@ const Contact = () => {
             <BreakFromTop breakHeight={'120px'}/>
             <h2>Send us a message</h2>
             <form className='contact-form' onSubmit={handleSubmit}>
-                <ContactFormInput name='sender' label={'Name'} type='text' value={sender} onChange={handleFieldChange} required/>
-                <ContactFormInput name='email' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" label={'E-mail'} type='email' value={email} onChange={handleFieldChange} required/>
-                <ContactFormInput name='subject' label={'Subject'} type='text' value={subject} onChange={handleFieldChange} required/>
-                <ContactFormInput name='message' label={'Message'} type='textarea' value={message} onChange={handleFieldChange} required/>
+                <FormInput name='sender' label={'Name'} type='text' value={sender} onChange={handleFieldChange} required/>
+                <FormInput name='email' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" label={'E-mail'} type='email' value={email} onChange={handleFieldChange} required/>
+                <FormInput name='subject' label={'Subject'} type='text' value={subject} onChange={handleFieldChange} required/>
+                <FormInput name='message' label={'Message'} type='textarea' value={message} onChange={handleFieldChange} required/>
                 <CustomButton name='Send message' type='submit'/>
             </form>
             

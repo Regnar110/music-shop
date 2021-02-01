@@ -11,7 +11,7 @@ const HomeLandingOffer = ({history}) => {
                 Daily news on sale
             </div>
             <div className='album'>
-                <img src={album}/>
+                <img alt='album' src={album}/>
             </div>
             <CustomButton name={'Check it out'} onClick={() => history.push('/shop')}/>
         </div>

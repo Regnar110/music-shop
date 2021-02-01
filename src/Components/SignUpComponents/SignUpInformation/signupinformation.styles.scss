@@ -1,0 +1,43 @@
+.signup-information {
+    width: 40%;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+
+    .signup-information-content {
+        display: flex;
+        flex-direction: column;
+
+        .information {
+            display: flex;
+            align-items: center;
+            margin: 20px;
+
+            img {
+                width: 70px;
+            }
+
+            span {
+                margin: 20px;
+            }
+        }
+    }
+}
+
+@media screen and(max-width: 1050px) {
+
+    .signup-information {
+        width: 50%;
+    }
+
+}
+
+@media screen and(max-width: 768px) {
+
+    .signup-information {
+        width: 100%;
+    }
+
+}

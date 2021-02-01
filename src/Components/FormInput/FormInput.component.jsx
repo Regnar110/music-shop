@@ -1,6 +1,6 @@
-import './contactforminput.styles.scss'
+import './forminput.styles.scss'
 
-const ContactFormInput = ({label, type, value,  ...otherProps}) => {
+const FormInput = ({label, type, value,  ...otherProps}) => {
     return (
         <div className='form-group'>
             {
@@ -24,4 +24,4 @@ const ContactFormInput = ({label, type, value,  ...otherProps}) => {
     )   
 }
 
-export default ContactFormInput;
+export default FormInput;
