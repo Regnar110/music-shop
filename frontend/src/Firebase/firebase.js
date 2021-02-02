@@ -15,13 +15,15 @@ const firebaseConfig = {
     const FirebaseContext = createContext(null)
     export { FirebaseContext }
 
-    export default ({ children }) => {
-        if (!app.apps.length) {
-          app.initializeApp(firebaseConfig)
-        }
-        return (
-          <FirebaseContext.Provider value={ app }>
-            { children }
-          </FirebaseContext.Provider>
-        )
+    const firebase = ({ children }) => {
+      if (!app.apps.length) {
+        app.initializeApp(firebaseConfig)
       }
+      return (
+        <FirebaseContext.Provider value={ app }>
+          { children }
+        </FirebaseContext.Provider>
+      )
+    }
+
+    export default firebase;

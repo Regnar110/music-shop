@@ -7,8 +7,8 @@ import CustomButton from '../../CustomButton/CustomButton.component'
 
 const SignUpAccountCreate = ({history}) => {
 
+    const [nick, setNick] = useState('')
     const [userName, setUserName] = useState('')
-    const [surname, setSurname] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -16,8 +16,8 @@ const SignUpAccountCreate = ({history}) => {
         const targetName = event.target.name
         if(targetName === 'username') {
             setUserName(event.target.value)
-        }else if(targetName === 'surname') {
-            setSurname(event.target.value)
+        }else if(targetName === 'nickname') {
+            setNick(event.target.value)
         }else if(targetName === 'email') {
             setEmail(event.target.value)
         } else if(targetName === 'password') {
@@ -25,16 +25,41 @@ const SignUpAccountCreate = ({history}) => {
         }
     }
 
-    const submitRegister = (event) => {
-        event.preventDefault();
-        console.log('registering')
+    const submitRegister = async (e) => {
+        e.preventDefault()
+        const userArray = [{
+            nick,
+            userName,
+            email,
+            password
+        }]
+        try {
+            const response = await fetch("http://localhost:3001/registerNewUser",{
+                method: 'POST', 
+                mode: 'cors',
+                credentials: 'same-origin',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userArray)
+            })
+            const data = await response.text();
+            console.log(data)
+        } catch(err) {
+            console.error('New user register error', err)
+        } finally {
+            setNick('')
+            setUserName('')
+            setPassword('')
+            setEmail('')
+        }
     }
 
     return (
         <form className='signup-account-create-form' onSubmit={submitRegister}>
             <h2>Create an account</h2>
+            <FormInput name='nickname' label='Nick' type='text' onChange={handleFieldChange} value={nick} required/>
             <FormInput name='username' label='Name' type='text' onChange={handleFieldChange} value={userName} required/>
-            <FormInput name='surname' label='Surname' type='text' onChange={handleFieldChange} value={surname} required/>
             <FormInput name='email' label='E-mail' type='email' onChange={handleFieldChange} value={email} pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required/>
             <FormInput name='password' label='Password' type='password' onChange={handleFieldChange} value={password} pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,64}$' required/>
             <CustomButton type='submit' name='Create account'/>

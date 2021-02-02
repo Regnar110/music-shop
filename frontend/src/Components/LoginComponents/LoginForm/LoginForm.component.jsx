@@ -34,17 +34,46 @@ const LoginForm = () => {
         }
       }
 
+      const submitLogin = async (e) => {
+            e.preventDefault();
+
+            const loginUserArray = [
+                {
+                    email,
+                    password
+                }
+            ]
+            try{
+                const response = await fetch('http://localhost:3001/userLogin', {
+                    method: 'POST', 
+                    mode: 'cors',
+                    credentials: 'same-origin',
+                    headers: {
+                    'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(loginUserArray)
+                })
+                const data = await response.text();
+                console.log(data)
+            } catch(err) {
+                console.error('failed to login', err)
+            } finally {
+                setEmail('')
+                setPassword('')
+            }
+        } 
+
     const handleFieldChange = event => {
         const targetName = event.target.name
         if(targetName === 'email') {
             setEmail(event.target.value)
-        } else if(targetName === password) {
+        } else if(targetName === 'password') {
             setPassword(event.target.value)
         }
     }
 
     return (
-        <form className='login-form'> 
+        <form className='login-form' onSubmit={submitLogin}> 
             <h2>Login</h2>
             <FormInput name='email' label='E-mail' type='email' onChange={handleFieldChange} value={email} required/>
             <FormInput name='password' label='Password' type='password' onChange={handleFieldChange} value={password} required/>

@@ -8,7 +8,7 @@ const CustomButton = ({name, google, ...otherProps}) => {
                 google ?  // jest to <div> z tego względu że nie ma on zatwierdzać formy w której się znajduje!
                 (
                     <div className='custom-google-button' {...otherProps}>
-                        <img src={GoogleButtonSvg}/><span>Login with Google</span>
+                        <img alt='login with google button' src={GoogleButtonSvg}/><span>Login with Google</span>
                     </div>
                 )
                 :

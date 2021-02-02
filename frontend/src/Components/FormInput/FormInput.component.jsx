@@ -7,14 +7,14 @@ const FormInput = ({label, type, value,  ...otherProps}) => {
                 type === 'textarea' ? 
                 (   
                     <>
-                        <textarea className='form-input-textarea' type={type} {...otherProps}/>
+                        <textarea className='form-input-textarea' type={type} value={value} {...otherProps}/>
                         <label className={`form-textarea-label ${value.length ? 'shrink' : ''}`}>{label}</label>  
                     </>
                 )
                 :
                 (   
                     <>
-                        <input className='form-input ' type={type} {...otherProps}/>
+                        <input className='form-input ' type={type} value={value} {...otherProps}/>
                         <label className={`form-label ${value.length ? 'shrink' : '' }`}>{label}</label>  
                     </>
                 )
