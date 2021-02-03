@@ -4,14 +4,18 @@ import App from './App/App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom'
 import FirebaseProvider from './Firebase/firebase'
+import { Provider } from 'react-redux'
+import store from './redux/store'
 import './index.scss'
 
 ReactDOM.render(
-  <BrowserRouter>
-    <FirebaseProvider>
-      <App />
-    </FirebaseProvider>
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <FirebaseProvider>
+        <App />
+      </FirebaseProvider>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );
 
