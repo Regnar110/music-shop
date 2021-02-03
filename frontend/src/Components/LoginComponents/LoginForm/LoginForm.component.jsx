@@ -8,15 +8,15 @@ import CustomButton from '../../CustomButton/CustomButton.component'
 const LoginForm = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [loginError, setLoginError] = useState('')
     const [currentUser, setCurrentUser] = useState('')
     
     const firebase = useContext(FirebaseContext)
 
       const provider = new firebase.auth.GoogleAuthProvider()
 
-      const googleAuthResultFunction = ({user: {displayName, email, uid}}) => {
+      const googleAuthResultFunction = ({user: {displayName, email}}) => {
         const userObject = {
-            uid,
             displayName,
             email
         }
@@ -37,12 +37,12 @@ const LoginForm = () => {
       const submitLogin = async (e) => {
             e.preventDefault();
 
-            const loginUserArray = [
+            const loginUserObject = 
                 {
                     email,
                     password
                 }
-            ]
+
             try{
                 const response = await fetch('http://localhost:3001/userLogin', {
                     method: 'POST', 
@@ -51,10 +51,16 @@ const LoginForm = () => {
                     headers: {
                     'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(loginUserArray)
+                    body: JSON.stringify(loginUserObject)
                 })
-                const data = await response.text();
+                const data = await response.json();
                 console.log(data)
+                if(data.response) {
+                    setLoginError(data.response)
+                } else {
+                    setCurrentUser(data)
+                    setLoginError('')
+                }
             } catch(err) {
                 console.error('failed to login', err)
             } finally {
@@ -80,6 +86,7 @@ const LoginForm = () => {
             <div className='buttons'>
                 <CustomButton type='submit' name={'Login'} google={false}/>
                 <CustomButton name={'Login'} google={true} onClick={handleGoogleLogin}/> 
+                <button onClick={() => console.log(currentUser, loginError)}></button>
             </div>
         </form>
     )

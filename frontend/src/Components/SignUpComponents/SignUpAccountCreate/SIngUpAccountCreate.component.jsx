@@ -27,12 +27,13 @@ const SignUpAccountCreate = ({history}) => {
 
     const submitRegister = async (e) => {
         e.preventDefault()
-        const userArray = [{
+
+        const userObject = {
             nick,
             userName,
             email,
             password
-        }]
+        }
         try {
             const response = await fetch("http://localhost:3001/registerNewUser",{
                 method: 'POST', 
@@ -41,7 +42,7 @@ const SignUpAccountCreate = ({history}) => {
                 headers: {
                 'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(userArray)
+                body: JSON.stringify(userObject)
             })
             const data = await response.text();
             console.log(data)
@@ -64,6 +65,7 @@ const SignUpAccountCreate = ({history}) => {
             <FormInput name='password' label='Password' type='password' onChange={handleFieldChange} value={password} pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,64}$' required/>
             <CustomButton type='submit' name='Create account'/>
             <span>*All fields are required to register</span>
+            <span>*Please enter your email in lowercase</span>
             <span>*The password must contain at least six characters, one uppercase letter, one number and one special character</span>
             <span>Do you have an account? <span onClick={() => history.push('/login')}>Sign In</span></span>
         </form>
