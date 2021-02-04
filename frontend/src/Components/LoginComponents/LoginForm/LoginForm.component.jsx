@@ -7,21 +7,18 @@ import './loginform.styles.scss'
 import FormInput from '../../FormInput/FormInput.component'
 import CustomButton from '../../CustomButton/CustomButton.component'
 
-const LoginForm = ({setCurrentUser}) => {
+const LoginForm = ({setCurrentUser, currentUser}) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loginError, setLoginError] = useState('')
-    
-    const firebase = useContext(FirebaseContext)
 
+    const firebase = useContext(FirebaseContext)
       const handleGoogleLogin = async () => {
         const provider = new firebase.auth.GoogleAuthProvider()
         try {
             const response = await firebase.auth().signInWithPopup(provider);
-            console.log(response)
             const result = await createGoogleUserObject(response.user)
             setCurrentUser(result)
-            console.log(result)
         } catch(err) {
             console.log(err)
         }
@@ -47,12 +44,12 @@ const LoginForm = ({setCurrentUser}) => {
                     body: JSON.stringify(loginUserObject)
                 })
                 const data = await response.json();
-                console.log(data)
                 if(data.response) {
                     setLoginError(data.response)
                 } else {
                     const {displayName, email} = data
                     setCurrentUser({displayName, email})
+                    localStorage.setItem('user', JSON.stringify({displayName, email}))
                     setLoginError('')
                 }
             } catch(err) {
@@ -95,6 +92,10 @@ const mapDispatchToProps = dispatch => ({
     setCurrentUser: user => dispatch(setCurrentUser(user))
 })
 
-export default connect(null, mapDispatchToProps)(LoginForm);
+const mapStateToProps = state => ({
+    currentUser: state.user.currentUser
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
 
 

@@ -19,18 +19,22 @@ const App = ({ currentUser, setCurrentUser }) => {
   const windowWidth = window.innerWidth
   const firebase = useContext(FirebaseContext)
   let unsubscribeFromAuth = useRef(null)
-  
-  
   useEffect(() => {
-    unsubscribeFromAuth.current = firebase.auth().onAuthStateChanged( async userAuth => {
-      if(userAuth) {
-        const userObject = await createGoogleUserObject(userAuth)
-        console.log(userObject)
-        setCurrentUser(userObject)
-      } else {
-        setCurrentUser(userAuth)
-      }
-    })
+    const userStorage = JSON.parse(localStorage.getItem('user'))
+    if(userStorage === null) {
+        unsubscribeFromAuth.current = firebase.auth().onAuthStateChanged( async userAuth => {
+        if(userAuth) {
+          const userObject = await createGoogleUserObject(userAuth)
+          console.log(userObject)
+          setCurrentUser(userObject)
+        } else {
+          setCurrentUser(userAuth)
+        }
+      })
+    } else {
+      setCurrentUser(userStorage)
+    }
+
     return () => {
       unsubscribeFromAuth.current()
     }
