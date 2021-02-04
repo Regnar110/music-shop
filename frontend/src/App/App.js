@@ -1,6 +1,9 @@
 import './App.scss';
-import { Switch, Route } from 'react-router-dom';
-
+import { useContext, useEffect, useRef } from 'react'
+import { Switch, Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { FirebaseContext, createGoogleUserObject } from '../Firebase/firebase'
+import setCurrentUser from '../redux/user/user.actions'
 import Navbar from '../Components/Navbar/Navbar.component'
 import MobileNavbar from '../Components/MobileNavbar/MobileNavbar.component'
 import Home from '../Pages/Home/Home.component'
@@ -11,9 +14,27 @@ import Shop from '../Pages/Shop/Shop.component'
 import Footer from '../Components/Footer/Footer.component'
 
 
-const App = () => {
+const App = ({ currentUser, setCurrentUser }) => {
 
   const windowWidth = window.innerWidth
+  const firebase = useContext(FirebaseContext)
+  let unsubscribeFromAuth = useRef(null)
+  
+  
+  useEffect(() => {
+    unsubscribeFromAuth.current = firebase.auth().onAuthStateChanged( async userAuth => {
+      if(userAuth) {
+        const userObject = await createGoogleUserObject(userAuth)
+        console.log(userObject)
+        setCurrentUser(userObject)
+      } else {
+        setCurrentUser(userAuth)
+      }
+    })
+    return () => {
+      unsubscribeFromAuth.current()
+    }
+  }, [unsubscribeFromAuth, firebase, setCurrentUser])
 
   return (
     <div className='App'> 
@@ -31,12 +52,24 @@ const App = () => {
         <Route exact path='/' component={Home}/>
         <Route exact path='/shop/' component={Shop}/>
         <Route exact path='/contact' component={Contact}/>
-        <Route exact path='/login' component={Login}/>
-        <Route exact path='/signup' component={SignUp}/>
+        <Route exact path='/login' render={
+          () => currentUser ? (<Redirect to='/'/>) : (<Login/>)
+        }/>
+        <Route exact path='/signup' render={
+          () => currentUser ? (<Redirect to='/'/>) : (<SignUp />)
+        }/>
       </Switch>
       <Footer />
     </div>
   )
 }
 
-export default App;
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser
+})
+
+const mapDispatchToProps = dispatch => ({
+  setCurrentUser: user => dispatch(setCurrentUser(user))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

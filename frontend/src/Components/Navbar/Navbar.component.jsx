@@ -8,7 +8,6 @@ import { connect } from 'react-redux'
 import ShopLogo from '../../Assets/ShopLogo.svg'
 
 const Navbar = ({history, currentUser}) => {
-
     const handleLogoChange = () => {
         let position = document.querySelector('body').getBoundingClientRect();
         const navLogo = document.querySelector('.nav-logo')

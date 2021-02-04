@@ -12,6 +12,16 @@ const firebaseConfig = {
     appId: "1:113166728737:web:8c7046cc30c952441e6d60"
   };
 
+
+    export const createGoogleUserObject = ({displayName, email}) => {
+      console.log('kestem w funkcji')
+      const userObject = {
+        displayName,
+        email
+    }
+    return userObject;
+    }
+
     const FirebaseContext = createContext(null)
     export { FirebaseContext }
 

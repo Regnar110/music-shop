@@ -1,19 +1,20 @@
 import './navbaruserandcart.styles.scss'
+import { useContext } from 'react'
 import cart from '../../Assets/NavbarUserAndCart/cart.svg'
+import { FirebaseContext } from '../../Firebase/firebase'
 
 import { withRouter } from 'react-router-dom'
-import { connect } from 'react-redux'
 
 const NavbarUserAndCart = () => {
+
+    const firebase = useContext(FirebaseContext)
+
     return (
         <div className='navbar-user-and-cart'>
-            <span className='cart'><img className='cart-icon' src={cart}/><span className='cart-item-count'>0</span></span>
+            <span onClick={() => firebase.auth().signOut()}>Sign out</span>
+            <span className='cart' ><img alt='cart-icon' className='cart-icon' src={cart}/><span className='cart-item-count'>0</span></span>
         </div>
     )
 }
 
-const mapStateToProps = state => ({
-    currentUser: state.user.currentUser
-})
-
-export default connect(mapStateToProps, null)(withRouter(NavbarUserAndCart));
+export default withRouter(NavbarUserAndCart);

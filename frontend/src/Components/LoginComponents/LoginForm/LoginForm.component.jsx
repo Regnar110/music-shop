@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react'
-import { FirebaseContext } from '../../../Firebase/firebase'
+import { FirebaseContext, createGoogleUserObject } from '../../../Firebase/firebase'
 import { connect } from 'react-redux'
 import setCurrentUser from '../../../redux/user/user.actions'
 
@@ -13,19 +13,13 @@ const LoginForm = ({setCurrentUser}) => {
     const [loginError, setLoginError] = useState('')
     
     const firebase = useContext(FirebaseContext)
-      const provider = new firebase.auth.GoogleAuthProvider()
-      const googleAuthResultFunction = ({user: {displayName, email}}) => {
-        const userObject = {
-            displayName,
-            email
-        }
-        return userObject;
-      }
 
       const handleGoogleLogin = async () => {
+        const provider = new firebase.auth.GoogleAuthProvider()
         try {
             const response = await firebase.auth().signInWithPopup(provider);
-            const result = await googleAuthResultFunction(response)
+            console.log(response)
+            const result = await createGoogleUserObject(response.user)
             setCurrentUser(result)
             console.log(result)
         } catch(err) {
@@ -102,3 +96,5 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(null, mapDispatchToProps)(LoginForm);
+
+
