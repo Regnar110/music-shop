@@ -19,8 +19,8 @@ const NavbarUserAndCart = ({ setCurrentUser }) => {
 
     return (
         <div className='navbar-user-and-cart'>
-            <span onClick={totalLogOut}>Sign out</span>
-            <span className='cart' ><img alt='cart-icon' className='cart-icon' src={cart}/><span className='cart-item-count'>0</span></span>
+            <span onClick={totalLogOut}>Sign out<div className='underline' /></span>
+            <span className='cart'><img alt='cart-icon' className='cart-icon' src={cart}/><span className='cart-item-count'>0</span></span>
         </div>
     )
 }
