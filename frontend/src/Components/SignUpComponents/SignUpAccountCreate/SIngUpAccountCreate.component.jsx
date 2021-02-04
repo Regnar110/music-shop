@@ -11,6 +11,7 @@ const SignUpAccountCreate = ({history}) => {
     const [userName, setUserName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [registerResult, setRegisterResult] = useState('')
 
     const handleFieldChange = event => {
         const targetName = event.target.name
@@ -44,10 +45,12 @@ const SignUpAccountCreate = ({history}) => {
                 },
                 body: JSON.stringify(userObject)
             })
-            const data = await response.text();
-            console.log(data)
+            const result = await response.text();
+            console.log(result)
+            setRegisterResult(result)
         } catch(err) {
             console.error('New user register error', err)
+            setRegisterResult('failed')
         } finally {
             setNick('')
             setUserName('')
@@ -63,6 +66,18 @@ const SignUpAccountCreate = ({history}) => {
             <FormInput name='username' label='Name' type='text' onChange={handleFieldChange} value={userName} required/>
             <FormInput name='email' label='E-mail' type='email' onChange={handleFieldChange} value={email} pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required/>
             <FormInput name='password' label='Password' type='password' onChange={handleFieldChange} value={password} pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,64}$' required/>
+            {
+                registerResult === 'succes' ?
+                <span className='register-succes'>Your account has been registered. You can now log in to the site.</span>
+                :
+                    registerResult === 'failed' ? 
+                    <span className='register-failed'>An error occurred during the registration process. Report this to the site administrator.</span>
+                    :
+                        registerResult === 'failed-user-exists' ? 
+                        <span className='register-failed'>The given nickname or email is already taken.</span>
+                        :
+                        null
+            }
             <CustomButton type='submit' name='Create account'/>
             <span>*All fields are required to register</span>
             <span>*Please enter your email in lowercase</span>

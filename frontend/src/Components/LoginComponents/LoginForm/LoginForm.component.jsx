@@ -1,20 +1,19 @@
 import { useContext, useState } from 'react'
 import { FirebaseContext } from '../../../Firebase/firebase'
+import { connect } from 'react-redux'
+import setCurrentUser from '../../../redux/user/user.actions'
 
 import './loginform.styles.scss'
 import FormInput from '../../FormInput/FormInput.component'
 import CustomButton from '../../CustomButton/CustomButton.component'
 
-const LoginForm = () => {
+const LoginForm = ({setCurrentUser}) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loginError, setLoginError] = useState('')
-    const [currentUser, setCurrentUser] = useState('')
     
     const firebase = useContext(FirebaseContext)
-
       const provider = new firebase.auth.GoogleAuthProvider()
-
       const googleAuthResultFunction = ({user: {displayName, email}}) => {
         const userObject = {
             displayName,
@@ -58,7 +57,8 @@ const LoginForm = () => {
                 if(data.response) {
                     setLoginError(data.response)
                 } else {
-                    setCurrentUser(data)
+                    const {displayName, email} = data
+                    setCurrentUser({displayName, email})
                     setLoginError('')
                 }
             } catch(err) {
@@ -83,13 +83,22 @@ const LoginForm = () => {
             <h2>Login</h2>
             <FormInput name='email' label='E-mail' type='email' onChange={handleFieldChange} value={email} required/>
             <FormInput name='password' label='Password' type='password' onChange={handleFieldChange} value={password} required/>
+            {
+                loginError ? 
+                <span className='login-error'>*No user with the given data was found. Please check your input.</span>
+                :
+                null
+            }
             <div className='buttons'>
                 <CustomButton type='submit' name={'Login'} google={false}/>
                 <CustomButton name={'Login'} google={true} onClick={handleGoogleLogin}/> 
-                <button onClick={() => console.log(currentUser, loginError)}></button>
             </div>
         </form>
     )
 }
 
-export default LoginForm;
+const mapDispatchToProps = dispatch => ({
+    setCurrentUser: user => dispatch(setCurrentUser(user))
+})
+
+export default connect(null, mapDispatchToProps)(LoginForm);

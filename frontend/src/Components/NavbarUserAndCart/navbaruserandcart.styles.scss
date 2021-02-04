@@ -1,0 +1,38 @@
+.navbar-user-and-cart {
+    position: relative;
+    right: 30px;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .cart {
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+
+        .cart-icon {
+            width: 35px;
+        }
+
+        .cart-item-count {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: black;
+            position: absolute;
+            top: 55%;
+        }
+    }
+}
+
+@media screen and(max-width: 768px) {
+    .navbar-user-and-cart {
+        right: 0px;
+    }
+}

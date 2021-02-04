@@ -5,4 +5,4 @@ const setCurrentUser = user => ({ // funkcja zwracająca obiekt zawierający typ
     payload: user
 })
 
-export default setCurrentUser
+export default setCurrentUser;

@@ -1,10 +1,12 @@
 import './mobilenavbar.styles.scss'
 import ShopLogo from '../../Assets/ShopLogo.svg'
+import NavbarUserAndCart from '../NavbarUserAndCart/NavbarUserAndCart.component'
 
 import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
 import { useState } from 'react'
 
-const MobileNavbar = ({ history }) => {
+const MobileNavbar = ({ history, currentUser }) => {
 
     const [navStatus, setNavStatus] = useState(false)
 
@@ -18,6 +20,7 @@ const MobileNavbar = ({ history }) => {
 
     return (
         <>
+            
             <div className='mobile-site-logo'><img alt='shop logo' src={ShopLogo} /></div>
             <div className='mobile-navbar-button' onClick={handleMenuOpen}>
                 <div />
@@ -34,9 +37,22 @@ const MobileNavbar = ({ history }) => {
                     <span onClick={() => {history.push('/shop'); setNavStatus(false)}}>Shop</span>
                     <span onClick={() => {history.push('/contact'); setNavStatus(false)}}>Contact</span>
                     <div className='user-group'>
-                        <span onClick={() => {history.push('/signup'); setNavStatus(false)}}>Sign up</span>
-                        <span>|</span>
-                        <span onClick={() => {history.push('/signin'); setNavStatus(false)}}>Login</span>
+                        <> 
+                        {
+                            currentUser ? 
+                            <NavbarUserAndCart />
+                            :
+                            (
+                                <>
+                                    <span onClick={() => {history.push('/signup'); setNavStatus(false)}}>Sign up</span>
+                                    <span>|</span>
+                                    <span onClick={() => {history.push('/signin'); setNavStatus(false)}}>Login</span>
+                                </>
+                            )
+                        }
+                            
+
+                        </>
                     </div>
                 </div>
             </nav>
@@ -44,4 +60,8 @@ const MobileNavbar = ({ history }) => {
     )
 }
 
-export default withRouter(MobileNavbar);
+const mapStateToProps = state => ({
+    currentUser: state.user.currentUser
+})
+
+export default connect(mapStateToProps, null)(withRouter(MobileNavbar));
