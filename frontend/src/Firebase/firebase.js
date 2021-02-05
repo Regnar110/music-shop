@@ -14,7 +14,6 @@ const firebaseConfig = {
 
 
     export const createGoogleUserObject = ({displayName, email}) => {
-      console.log('kestem w funkcji')
       const userObject = {
         displayName,
         email

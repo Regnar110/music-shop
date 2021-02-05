@@ -25,7 +25,6 @@ const App = ({ currentUser, setCurrentUser }) => {
         unsubscribeFromAuth.current = firebase.auth().onAuthStateChanged( async userAuth => {
         if(userAuth) {
           const userObject = await createGoogleUserObject(userAuth)
-          console.log(userObject)
           setCurrentUser(userObject)
         } else {
           setCurrentUser(userAuth)
@@ -54,7 +53,8 @@ const App = ({ currentUser, setCurrentUser }) => {
     }
       <Switch>
         <Route exact path='/' component={Home}/>
-        <Route exact path='/shop/' component={Shop}/>
+        <Route exact path='/shop' component={Shop}/>
+        <Route exact path='/shop/:shopId' component={Shop}/>
         <Route exact path='/contact' component={Contact}/>
         <Route exact path='/login' render={
           () => currentUser ? (<Redirect to='/'/>) : (<Login/>)

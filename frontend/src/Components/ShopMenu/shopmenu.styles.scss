@@ -1,0 +1,43 @@
+.shop-side-menu {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 70%;
+
+    .shop-menu-item {
+        position: relative;
+        text-align: center;
+        font-size: 20px;
+        padding: 10px;
+        cursor: pointer;
+
+        &:hover .menu-item-dropdown {
+            opacity: 1;
+            display: flex;
+        }
+
+        .menu-item-dropdown {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            width: 200px;
+            border: 1px solid white;
+            background-color: white;
+            text-align: center;
+            opacity: 0;
+            display: none;
+
+            .shop-menu-item-dropdown-item {
+                padding: 20px;
+                color: black;
+                text-align: center;
+
+                &:hover {
+                    color: white;
+                    background-color: black;
+                }
+            }
+        }
+    }
+}
