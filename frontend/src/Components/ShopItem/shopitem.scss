@@ -1,0 +1,45 @@
+.shop-item-card {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    font-family: 'Roboto', sans-serif;
+
+    img {
+        width: 100%;
+    }
+    .shop-item-buttons {
+    display: flex;
+        .check-item-btn {
+            background-color: #F31337;
+            cursor: pointer;
+            width: 70%;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+        }
+
+        .add-to-cart-btn {
+            background-color: transparent;
+            cursor: pointer;
+            width: 30%;
+            padding: 0px 20px;
+            border: none;
+            border: 1px solid #F31337;
+            
+            img {
+                width: 30px;
+            }
+        }
+    }
+
+
+    .shop-item-card-description {
+        width: 100%;
+        font-size: 20px;
+        margin-top: 10px;
+        
+        display: flex;
+        justify-content: space-between;
+    }
+}

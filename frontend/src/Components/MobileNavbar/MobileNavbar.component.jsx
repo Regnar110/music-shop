@@ -46,7 +46,7 @@ const MobileNavbar = ({ history, currentUser }) => {
                                 <>
                                     <span onClick={() => {history.push('/signup'); setNavStatus(false)}}>Sign up</span>
                                     <span>|</span>
-                                    <span onClick={() => {history.push('/signin'); setNavStatus(false)}}>Login</span>
+                                    <span onClick={() => {history.push('/login'); setNavStatus(false)}}>Login</span>
                                 </>
                             )
                         }

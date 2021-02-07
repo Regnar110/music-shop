@@ -1,5 +1,6 @@
 import './shop.styles.scss'
-import { withRouter, Switch, Route, useRouteMatch} from 'react-router-dom'
+import { withRouter, useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 
 import BreakFromTop from '../../Components/BreakFromTop/BreakFromTop.component'
 import ShopMenu from '../../Components/ShopMenu/ShopMenu.component'
@@ -8,8 +9,22 @@ import ShopItemsContainer from '../../Components/ShopItemsContainer/ShopItemsCon
 
 const Shop = () => {
 
-    let { path } = useRouteMatch();
     const windowWidth = window.innerWidth
+    let { shopId } = useParams();
+
+    const [category, setCategory ] = useState('')
+
+    useEffect(() => {
+        if(shopId === undefined) {
+            setCategory('All albums')
+        }else {
+          setCategory(shopId)  
+        }
+        
+        return () => {
+            setCategory('')
+        }
+    }, [setCategory, shopId])
 
     return (
         <div className='shop'>
@@ -22,15 +37,10 @@ const Shop = () => {
                 )
                 :
                 (
-                  <ShopMenu />  
+                    <ShopMenu />  
                 )
             }
-                
-                <Switch>
-                    <Route exact path={path}>
-                        <ShopItemsContainer />
-                    </Route>
-                </Switch>
+                <ShopItemsContainer category={category}/>
             </div>
         </div>
     )

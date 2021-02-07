@@ -1,0 +1,19 @@
+.shop-items-container {
+    font-family: 'Roboto', sans-serif;
+    width: 100%;
+
+    h2 {
+        position: relative;
+        left: 10px;
+        width: 20%;
+        text-align: center;
+    }
+
+   .shop-items {
+       width: 100%;
+       display: flex;
+       flex-wrap: wrap;
+       justify-content: center;
+       align-items: center;
+   }
+}

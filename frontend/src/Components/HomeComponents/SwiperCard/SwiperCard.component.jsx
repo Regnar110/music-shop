@@ -1,5 +1,5 @@
 import './swipercard.styles.scss'
-import album from '../../../Assets/album.jpg'// to zdjęcie ma 688px na 688 px !!! MUSZĄ BYC TAKIE DO ALBUMÓW
+import album from '../../../Assets/Albums/album4.jpg'// to zdjęcie ma 688px na 688 px !!! MUSZĄ BYC TAKIE DO ALBUMÓW
 import SwiperCardButton from '../SwiperCardButton/SwiperCardButton.component'
 
 const SwiperCard = () => {

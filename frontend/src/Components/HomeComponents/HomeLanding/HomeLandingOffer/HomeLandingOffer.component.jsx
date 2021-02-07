@@ -2,7 +2,7 @@ import './homelandingoffer.styles.scss'
 import { withRouter } from 'react-router-dom';
 
 import CustomButton from '../../../CustomButton/CustomButton.component'
-import album from '../../../../Assets/album.jpg'
+import album from '../../../../Assets/Albums/album.jpg'
 
 const HomeLandingOffer = ({history}) => {
     return(
