@@ -1,7 +1,5 @@
 import './shop.styles.scss'
-import { withRouter, useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-
+import { withRouter } from 'react-router-dom'
 import BreakFromTop from '../../Components/BreakFromTop/BreakFromTop.component'
 import ShopMenu from '../../Components/ShopMenu/ShopMenu.component'
 import ShopMobileMenu from '../../Components/ShopMobileMenu/ShopMobileMenu.component'
@@ -10,21 +8,6 @@ import ShopItemsContainer from '../../Components/ShopItemsContainer/ShopItemsCon
 const Shop = () => {
 
     const windowWidth = window.innerWidth
-    let { shopId } = useParams();
-
-    const [category, setCategory ] = useState('')
-
-    useEffect(() => {
-        if(shopId === undefined) {
-            setCategory('All albums')
-        }else {
-          setCategory(shopId)  
-        }
-        
-        return () => {
-            setCategory('')
-        }
-    }, [setCategory, shopId])
 
     return (
         <div className='shop'>
@@ -40,7 +23,7 @@ const Shop = () => {
                     <ShopMenu />  
                 )
             }
-                <ShopItemsContainer category={category}/>
+                <ShopItemsContainer />
             </div>
         </div>
     )

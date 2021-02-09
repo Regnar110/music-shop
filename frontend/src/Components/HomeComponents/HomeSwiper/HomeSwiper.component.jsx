@@ -6,11 +6,39 @@ import 'swiper/components/scrollbar/scrollbar.scss';
 
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { useEffect, useState } from 'react'
 
 import SwiperCard from '../SwiperCard/SwiperCard.component'
 
-const HomeSwiper = () =>  {
+const HomeSwiper = ({ place }) =>  {
 
+    const [swiperProducts, setSwiperProducts] = useState([])
+
+    useEffect( () => {
+        (async () => {
+            try {
+                const response = await fetch('http://localhost:3008/getproducts', {
+                    method: 'POST', 
+                    mode: 'cors',
+                    credentials: 'same-origin',
+                    headers: {
+                    'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        place
+                    })
+                })
+                const data = await response.json();
+                console.log(data)
+                setSwiperProducts(data)
+            } catch(err) {
+                console.log(err)
+            }
+        })();
+        return () => {
+            setSwiperProducts('')
+        }
+    },[place, setSwiperProducts])
 
     SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
@@ -25,16 +53,13 @@ const HomeSwiper = () =>  {
                     loop={true}
                     loopFillGroupWithBlank={true}
                     >
-                    <SwiperSlide><SwiperCard /></SwiperSlide>
-                    <SwiperSlide><SwiperCard /></SwiperSlide>
-                    <SwiperSlide><SwiperCard /></SwiperSlide>
-                    <SwiperSlide><SwiperCard /></SwiperSlide>
-                    <SwiperSlide><SwiperCard /></SwiperSlide>
-                    <SwiperSlide><SwiperCard /></SwiperSlide>
-                    <SwiperSlide><SwiperCard /></SwiperSlide>
-                    <SwiperSlide><SwiperCard /></SwiperSlide>
-                    <SwiperSlide><SwiperCard /></SwiperSlide>
-                    <SwiperSlide><SwiperCard /></SwiperSlide>
+                    {
+                        swiperProducts.map(({PRODUCT_ID, AUTHOR, ALBUM, PRICE, PRODUCT_PICTURE}) => {
+                            return(
+                                <SwiperSlide key={PRODUCT_ID}><SwiperCard AUTHOR={AUTHOR} ALBUM={ALBUM} PRICE={PRICE} PICTURE={PRODUCT_PICTURE} /></SwiperSlide>
+                            )
+                        })
+                    }
                 </Swiper>
             </div>
 

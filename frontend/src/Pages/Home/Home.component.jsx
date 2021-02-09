@@ -12,13 +12,11 @@ const Home = ({history}) => {
             <BreakFromTop breakHeight={'80px'}/>
             <HomeLanding />
             <HomeSectionHeader title={"TOP 10 News"}/>
-            <HomeSwiper />
+            <HomeSwiper place='TOP10' />
             <HomeSectionHeader title={"Recommended today"}/>
-            <HomeSwiper />
+            <HomeSwiper place='RECOMENDED'/>
             <HomeSectionHeader title={"Pre-orders"}/>
-            <HomeSwiper />
-            <HomeSectionHeader title={"Categories"}/>
-            <HomeSwiper />
+            <HomeSwiper place='PRE_ORDERS'/>
             <CustomButton name={'Go to the store'} onClick={() => history.push('/shop')}/>
         </div>
     )

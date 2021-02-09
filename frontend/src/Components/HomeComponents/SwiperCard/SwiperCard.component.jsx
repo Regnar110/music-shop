@@ -1,17 +1,16 @@
 import './swipercard.styles.scss'
-import album from '../../../Assets/Albums/album4.jpg'// to zdjęcie ma 688px na 688 px !!! MUSZĄ BYC TAKIE DO ALBUMÓW
 import SwiperCardButton from '../SwiperCardButton/SwiperCardButton.component'
 
-const SwiperCard = () => {
+const SwiperCard = ({ AUTHOR, ALBUM, PRICE, PICTURE }) => {
     return(
         <div className='swiper-card'>
             <div className='swiper-image'>
-               <img alt='album' src={album} /> 
+               <img alt='album' src={PICTURE} /> 
                <SwiperCardButton />
             </div>
             <div className='swiper-card-description'>
-                <span>Ryan Jones - Pain</span>
-                <span>$50</span>
+                <span>{AUTHOR} - {ALBUM}</span>
+                <span>${PRICE}</span>
             </div>
         </div>
     )
